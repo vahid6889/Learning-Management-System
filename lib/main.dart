@@ -11,6 +11,6 @@ void main() {
     systemNavigationBarIconBrightness: Brightness.light
   ),
   );
-  runApp(MyApp());
+  runApp(MyApp() );
 }
 

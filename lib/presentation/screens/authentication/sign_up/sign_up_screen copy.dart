@@ -2,10 +2,10 @@ import 'dart:ui';
 import 'package:learning_management_system/presentation/resources/assets_manager.dart';
 import 'package:learning_management_system/presentation/resources/color_manager.dart';
 import 'package:learning_management_system/presentation/resources/values_manager.dart';
-import 'package:rive/rive.dart';
+// import 'package:rive/rive.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/widgets.dart';
-import '../../resources/string_manager.dart';
+import '../../../widgets/widgets.dart';
+import '../../../resources/string_manager.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -15,7 +15,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -39,21 +38,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: RotatedBox(
-                quarterTurns: 2,
-                child: Image.asset(ImageManagerAssets.spline)),
+                quarterTurns: 2, child: Image.asset(ImageManagerAssets.spline)),
           ),
-          const RiveAnimation.asset(RiveManagerAssets.blobs),
+          // const RiveAnimation.asset(RiveManagerAssets.blobs),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(
-                  sigmaX: AppSize.s16, sigmaY: AppSize.s16),
+              filter:
+                  ImageFilter.blur(sigmaX: AppSize.s16, sigmaY: AppSize.s16),
               child: const SizedBox(),
             ),
           ),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(
-                  sigmaX: AppSize.s16, sigmaY: AppSize.s16),
+              filter:
+                  ImageFilter.blur(sigmaX: AppSize.s16, sigmaY: AppSize.s16),
               child: const SizedBox(),
             ),
           ),
@@ -72,10 +70,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        AppStringSignUp.signInButtonText,
-                        style: Theme.of(context).textTheme.button,
-                      ),
+                      // Text(
+                      //   AppStringSignUp.signInButtonText,
+                      //   style: Theme.of(context).textTheme.button,
+                      // ),
                       const SizedBox(
                         width: AppPadding.p12,
                       ),
@@ -111,10 +109,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          AppStringSignUp.signUpButtonText,
-                          style: Theme.of(context).textTheme.button,
-                        ),
+                        // Text(
+                        //   AppStringSignUp.signUpButtonText,
+                        //   style: Theme.of(context).textTheme.button,
+                        // ),
                         const SizedBox(
                           width: AppSize.s12,
                         ),

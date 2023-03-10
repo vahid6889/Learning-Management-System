@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learning_management_system/presentation/resources/assets_manager.dart';
+import 'package:learning_management_system/presentation/resources/route_manager.dart';
 import 'package:learning_management_system/presentation/resources/values_manager.dart';
 import 'package:provider/provider.dart';
 import '../../../../../app/provider/search/search_provider.dart';
@@ -18,16 +19,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   ScrollController? scrollController;
   bool lastStatus = true;
 
-  bool get isShrink{
-    return scrollController != null && scrollController!.hasClients && scrollController!.offset > (AppSize.s260);
+  bool get isShrink {
+    return scrollController != null &&
+        scrollController!.hasClients &&
+        scrollController!.offset > (AppSize.s260);
   }
 
-  void scrollListener(){
-    if(isShrink != lastStatus){
+  void scrollListener() {
+    if (isShrink != lastStatus) {
       setState(() {
         lastStatus = isShrink;
       });
@@ -51,20 +53,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final searchProvider = Provider.of<SearchProvider>(context);
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: isShrink ? ColorManager.lightBlack1 : ColorManager.black),
+      SystemUiOverlayStyle(
+        statusBarColor:
+            isShrink ? ColorManager.lightBlack1 : ColorManager.black,
+        systemNavigationBarColor: ColorManager.black,
+        systemNavigationBarIconBrightness: Brightness.light,
+        systemNavigationBarDividerColor: ColorManager.black,
+      ),
     );
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorManager.black,
-        body:
-        CustomScrollView(
+        body: CustomScrollView(
           controller: scrollController,
           physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
               stretch: true,
               pinned: true,
-              backgroundColor: isShrink ? ColorManager.lightBlack1 : ColorManager.black,
+              backgroundColor:
+                  isShrink ? ColorManager.lightBlack1 : ColorManager.black,
               toolbarHeight: AppSize.s0,
               expandedHeight: AppSize.s250,
               flexibleSpace: Padding(
@@ -72,26 +80,28 @@ class _HomePageState extends State<HomePage> {
                 child: FlexibleSpaceBar(
                   stretchModes: const [StretchMode.zoomBackground],
                   centerTitle: true,
-                  background: isShrink ? null :
-                  Stack(
-                    children: [
-                      Container(
-                        color: ColorManager.white,
-                      ),
-                      const Positioned.fill(
-                        child: Image(
-                          image: AssetImage(
-                            ImageManagerAssets.headerHomePage,
-                          ),
+                  background: isShrink
+                      ? null
+                      : Stack(
+                          children: [
+                            Container(
+                              color: ColorManager.white,
+                            ),
+                            const Positioned.fill(
+                              child: Image(
+                                image: AssetImage(
+                                  ImageManagerAssets.headerHomePage,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
             ),
             SliverAppBar(
-              backgroundColor: isShrink ? ColorManager.lightBlack1 : ColorManager.black,
+              backgroundColor:
+                  isShrink ? ColorManager.lightBlack1 : ColorManager.black,
               toolbarHeight: AppSize.s120,
               pinned: true,
               flexibleSpace: Padding(
@@ -101,27 +111,34 @@ class _HomePageState extends State<HomePage> {
                   background: Stack(
                     children: [
                       AnimatedPositioned(
-                        duration: const Duration(milliseconds: DurationConstant.d2000),
-                        left: isShrink ? (MediaQuery.of(context).size.width / 2 - 44.5) : AppSize.s0,
+                        duration: const Duration(
+                            milliseconds: DurationConstant.d2000),
+                        left: isShrink
+                            ? (MediaQuery.of(context).size.width / 2 - 44.5)
+                            : AppSize.s0,
                         child: Text(
                           AppStringHomePage.headerText,
-                          style: Theme.of(context).textTheme.headline2,
+                          style: Theme.of(context).textTheme.headline4,
                         ),
                       ),
                       Positioned(
                         top: AppSize.s45,
                         left: AppSize.s0,
                         child: SizedBox(
-                            width: (MediaQuery.of(context).size.width - AppPadding.p24),
-                            height: AppSize.s175,
+                          width: (MediaQuery.of(context).size.width -
+                              AppPadding.p24),
+                          height: AppSize.s175,
                           child: Column(
                             children: [
                               SizedBox(
-                                width: (MediaQuery.of(context).size.width - AppPadding.p24),
+                                width: (MediaQuery.of(context).size.width -
+                                    AppPadding.p24),
                                 height: AppSize.s40,
                                 child: TextFormField(
                                   onTap: () {
-                                    context.read<SearchProvider>().requestFocus(context: context);
+                                    context
+                                        .read<SearchProvider>()
+                                        .requestFocus(context: context);
                                   },
                                   focusNode: searchProvider.searchFocusNode,
                                   decoration: InputDecoration(
@@ -131,29 +148,34 @@ class _HomePageState extends State<HomePage> {
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius:
-                                      BorderRadius.circular(AppSize.s4),
+                                          BorderRadius.circular(AppSize.s4),
                                     ),
                                     focusColor: ColorManager.darkGrey,
                                     filled: true,
                                     fillColor: ColorManager.lightGrey,
-                                    prefixIcon: Icon(CupertinoIcons.search,
+                                    prefixIcon: Icon(
+                                      CupertinoIcons.search,
                                       color: ColorManager.darkWhite1,
                                     ),
-                                    hintText: AppStringHomePage.hintSearchBarText,
-                                    hintStyle: Theme.of(context).textTheme.labelMedium,
+                                    hintText:
+                                        AppStringHomePage.hintSearchBarText,
+                                    hintStyle:
+                                        Theme.of(context).textTheme.labelMedium,
                                   ),
                                   keyboardType: TextInputType.name,
                                 ),
                               ),
                               AnimatedOpacity(
-                                duration: const Duration(milliseconds: DurationConstant.d2000),
+                                duration: const Duration(
+                                    milliseconds: DurationConstant.d2000),
                                 opacity: isShrink ? AppSize.s1 : AppSize.s0,
                                 child: const SizedBox(
                                   height: AppSize.s8,
                                 ),
                               ),
                               AnimatedOpacity(
-                                duration: const Duration(milliseconds: DurationConstant.d2000),
+                                duration: const Duration(
+                                    milliseconds: DurationConstant.d2000),
                                 opacity: isShrink ? AppSize.s1 : AppSize.s0,
                                 child: SizedBox(
                                   height: AppSize.s4,
@@ -167,47 +189,49 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
               ),
             ),
             SliverList(
-              delegate: SliverChildListDelegate(
-                  [
-                    const CategoriesSection(),
-                    Container(
-                      height: 200,
-                      width: double.infinity,
-                      color: Colors.green,
-                    ),
-                    Container(
-                      height: 200,
-                      width: double.infinity,
-                      color: Colors.blue,
-                    ),
-                    Container(
-                      height: 200,
-                      width: double.infinity,
-                      color: Colors.blue,
-                    ),
-                    Container(
-                      height: 200,
-                      width: double.infinity,
-                      color: Colors.blue,
-                    ),
-                    Container(
-                      height: 200,
-                      width: double.infinity,
-                      color: Colors.blue,
-                    ),
-                  ]
-              ),
+              delegate: SliverChildListDelegate([
+                const CategoriesSection(),
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  color: Colors.green,
+                ),
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  color: Colors.blue,
+                ),
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  color: Colors.blue,
+                ),
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  color: Colors.blue,
+                ),
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  color: Colors.blue,
+                ),
+              ]),
             ),
           ],
         ),
-        bottomNavigationBar: signInElevatedButton(onPressed: (){}, context: context),
+        bottomNavigationBar: signInElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, Routes.signIn);
+          },
+          context: context,
+        ),
       ),
     );
   }

@@ -4,13 +4,13 @@ import 'package:learning_management_system/presentation/resources/color_manager.
 import 'app/app.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: ColorManager.black,
-    statusBarIconBrightness: Brightness.light,
-    systemNavigationBarColor: ColorManager.black,
-    systemNavigationBarIconBrightness: Brightness.light
-  ),
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: ColorManager.black,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: ColorManager.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ),
   );
-  runApp(MyApp() );
+  runApp(MyApp());
 }
-

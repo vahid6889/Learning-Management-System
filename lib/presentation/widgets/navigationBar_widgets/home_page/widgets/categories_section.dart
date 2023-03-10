@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_management_system/presentation/resources/color_manager.dart';
+import 'package:learning_management_system/presentation/resources/route_manager.dart';
 import '../../../../constants/categories_list.dart';
 import '../../../../resources/string_manager.dart';
 import '../../../../resources/values_manager.dart';
@@ -22,10 +23,12 @@ class CategoriesSection extends StatelessWidget {
               children: [
                 Text(
                   AppStringHomePage.categoriesText,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.headline4,
                 ),
                 TextButton(
-                  onPressed: (){},
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.allCategories);
+                  },
                   child: Text(
                     AppStringHomePage.seeAllText,
                     style: Theme.of(context).textTheme.subtitle1,
@@ -34,29 +37,33 @@ class CategoriesSection extends StatelessWidget {
               ],
             ),
             SizedBox(
-                width: double.infinity,
-                height: AppSize.s40,
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categoriesList.length,
-                  itemBuilder: (context,index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppPadding.p4),
+              width: double.infinity,
+              height: AppSize.s40,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: categoriesList.length,
+                itemBuilder: (context, index) => Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppPadding.p4),
+                  child: GestureDetector(
+                    onTap: () {},
                     child: Chip(
                       backgroundColor: ColorManager.black,
                       shape: StadiumBorder(
                         side: BorderSide(
                           width: 1,
                           color: ColorManager.white,
-                      ),
+                        ),
                       ),
                       label: Text(
-                          categoriesList[index],
-                          style: Theme.of(context).textTheme.bodyText1,
+                        categoriesList[index],
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ),
                   ),
                 ),
+              ),
             ),
           ],
         ),
